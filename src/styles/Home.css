@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Couture Bold';
+    src: url('fonts/couture-bld.otf');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.home-first-container {
+    padding: clamp(1rem, 5vw, 5rem) clamp(1rem, 5vw, 7.5rem);
+}
+
+.home-first-container #title {
+    width: clamp(0px, 80vw, 43%);
+    font-family: 'Couture Bold', 'sans-serif';
+    font-size: clamp(1.5rem, 5vw, 5rem);
+    animation: swipefromleft 1s ease-out;
+    display: inline-block;
+}
+
+.home-first-container #title span {
+    display: inline-block;
+    animation: swipefromleft 1s ease-out;
+    animation-delay: calc(0.2s * var(--index));
+    margin-right: clamp(0rem, 1vw, 2rem);
+}
+
+@keyframes swipefromleft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.home-first-container #title {
+    font-family: 'Couture Bold', 'sans-serif';
+    font-size: clamp(1.5rem, 5vw, 5rem);
+    animation: swipefromleft 1s ease-out;
+}
+
+.home-first-container img {
+    width: 420px;
+    height: 420px;
+}
