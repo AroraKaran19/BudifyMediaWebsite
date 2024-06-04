@@ -44,7 +44,7 @@
 }
 
 .home-first-content p.loop {
-    font-size: clamp(1.5rem, 5vw, 5rem);
+    font-size: clamp(2rem, 5vw, 5rem);
     color: #E25E3E;
     text-shadow: #E25E3E 0px 0px 10px;
 }

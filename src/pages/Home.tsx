@@ -27,7 +27,7 @@ function Home() {
 				<div className="home-first-content flex h-full w-full flex-col justify-center items-center">
 					<p>So You are a</p>
 					<p className="loop">Individual</p>
-					<p>"We'll take your marketing needs from here"</p>
+					<p className="text-center">"We'll take your marketing needs from here"</p>
 				</div>
 			</div>
 		</div>
