@@ -16,6 +16,7 @@
     font-size: clamp(1.5rem, 5vw, 5rem);
     animation: swipefromleft 1s ease-out;
     display: inline-block;
+    line-height: 1;
 }
 
 .home-first-container #title span {
@@ -25,19 +26,27 @@
     margin-right: clamp(0rem, 1vw, 2rem);
 }
 
-@keyframes swipefromleft {
-    from {
-        transform: translateX(-100%);
+@keyframes swipefromtop {
+    0% {
+        transform: translateY(-100%);
     }
-    to {
-        transform: translateX(0);
+    100% {
+        transform: translateY(0);
     }
 }
 
-.home-first-container #title {
+.home-first-content p {
     font-family: 'Couture Bold', 'sans-serif';
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    animation: swipefromtop 1s ease-out;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.home-first-content p.loop {
     font-size: clamp(1.5rem, 5vw, 5rem);
-    animation: swipefromleft 1s ease-out;
+    color: #E25E3E;
+    text-shadow: #E25E3E 0px 0px 10px;
 }
 
 .home-first-container img {

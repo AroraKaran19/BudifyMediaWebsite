@@ -48,13 +48,10 @@ const Navbar = () => {
 						<img src={Logo} alt="Budify Media Logo" className='h-[50px]' />
 					</a>
 				</div>
-				<div className="flex-auto h-full flex justify-center items-center sm:hidden nav-items text-[#7c7a7c]">
+				<div className="flex-auto flex-grow h-full flex justify-end items-center sm:hidden nav-items text-[#7c7a7c]">
 					{menu.map((item) => (
 						<NavLinks key={item.index} href={item.href} name={item.name}></NavLinks>
 					))}
-				</div>
-				<div className="flex-none sm:hidden getstarted-btn h-full flex justify-center items-center w-full max-w-[20vw]">
-					<a href="#start">Get started →</a>
 				</div>
 			</div>
 			{menuOpen ?
