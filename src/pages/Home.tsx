@@ -1,35 +1,56 @@
 import { useEffect } from "react";
 import "../styles/Home.css";
+import FirstSection from "../components/Home/FirstSection";
+import SecondSection from "../components/Home/SecondSection";
 
 function Home() {
-	const loopThrough = ["Founder", "Startup", "Influencer", "Firm", "Agency", "Individual"]
 
+
+	// Handle the active section based on the scroll position
 	useEffect(() => {
-		const handleLoopThrough = () => {
-			let i = 0;
-			setInterval(() => {
-				if (i === loopThrough.length) {
-					i = 0;
+		const handleActiveSection = () => {
+			// Get the currect focused section based on the scroll position
+			const sections = document.querySelectorAll("section");
+			const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+			const navbarHeight = document.getElementsByClassName('navbar')[0]?.clientHeight || 0;
+			let currentSection = -1;
+			sections.forEach((section, index) => {
+				const sectionTop = section.offsetTop - navbarHeight;
+				const sectionBottom = sectionTop + section.clientHeight;
+				if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+					currentSection = index;
 				}
-				let element = document.getElementsByClassName("loop")[0];
-				if (element) {
-					element.innerHTML = loopThrough[i];
+			});
+			// Add active class to the current focused section
+			const menuItems = document.querySelectorAll(".nav-items a");
+			menuItems.forEach((item) => {
+				item.classList.remove("active");
+			});
+			menuItems[currentSection + 1].classList.add("active");
+			// handle if user is not on any section simple make the first a active
+			if (sections.length > 0) {
+				if (scrollPosition < sections[0].offsetTop - navbarHeight || scrollPosition > sections[sections.length - 1].offsetTop + sections[sections.length - 1].clientHeight - navbarHeight) {
+					// remove active class from all menu items
+					menuItems.forEach((item) => {
+						item.classList.remove("active");
+					});
+					// add active class to the first menu item
+					menuItems[0].classList.add("active");
 				}
-				i++;
-			}, 1000);
+			}
+
 		}
-		handleLoopThrough();
+		handleActiveSection();
+		window.addEventListener("scroll", handleActiveSection);
+		return () => {
+			window.removeEventListener("scroll", handleActiveSection);
+		}
 	}, []);
 
 	return (
-		<div className="h-[150vh] bg-[#191919]">
-			<div className="home-first-container h-auto w-full" id="start">
-				<div className="home-first-content flex h-full w-full flex-col justify-center items-center">
-					<p>So You are a</p>
-					<p className="loop">Individual</p>
-					<p className="text-center">"We'll take your marketing needs from here"</p>
-				</div>
-			</div>
+		<div className="min-h-screen bg-neutral-950">
+			<FirstSection />
+			<SecondSection />
 		</div>
 	);
 }

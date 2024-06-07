@@ -38,7 +38,7 @@
 
 .menu {
     padding: clamp(0px, 5vw, 25px) 0;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 10px rgba(255, 255, 255, 0.1);
 }
 
 .menu .menu-nav-links a {
@@ -46,6 +46,7 @@
     font-size: clamp(16px, 5vw, 24px);
     transition: all 0.7s;
     color: white;
+    cursor: pointer;
 }
 
 .menu .menu-nav-links a.active {
@@ -54,6 +55,7 @@
 
 .navbar .nav-items {
     height: 100%;
+    margin-right: clamp(0px, 5vw, 20px);
 }
 
 .navbar .nav-items a {
@@ -64,6 +66,7 @@
 
 .navbar .nav-items a:hover {
     scale: 1.02;
+    cursor: pointer;
 }
 
 .navbar .nav-items a.active {
@@ -91,11 +94,7 @@
     width: 100%;
 }
 
-.navbar .menu-register-btn svg {
-    height: clamp(36px, 5vw, 40px);
-}
-
-.navbar .getstarted-btn a {
+/* .navbar .getstarted-btn a {
     background-color: #E25E3E;
     padding: clamp(0px, 2vw, 13px) clamp(0px, 2vw, 15px);
     border-radius: 50px;
@@ -108,7 +107,7 @@
 .navbar .getstarted-btn a:hover {
     box-shadow: 0px 0px 4px black;
     transform: scale(1.02);
-}
+} */
 
 @media (min-width: 0px) and (max-width: 1024px) {
     .navbar {

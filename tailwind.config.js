@@ -29,6 +29,27 @@ export default {
         'min': '1441px' // Extra large devices (large desktops)
       }
       // => @media (min-width: 1441px) { ... }
+    },
+    extend: {
+      keyframes: {
+        shine: {
+          '0%': { backgroundPosition: '0%' },
+          '50%': { backgroundPosition: 'calc(100% + 80vw)' },
+          '100%': { backgroundPosition: '100%' },
+        },
+        swipefromtop: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        shine: 'swipefromtop 1s ease-in-out, shine 8s infinite ease',
+        shineDelayed: 'swipefromtop 1s ease-in-out, shine 8s infinite ease 8s',
+        swipeTop: 'swipefromtop 1s ease-in-out',
+      },
+      backgroundImage: {
+        'heading-gradient': 'linear-gradient(to left, hsl(0, 0%, 100%) 5%, hsl(30, 100%, 30%) 100%)',
+      },
     }
   },
   plugins: [],

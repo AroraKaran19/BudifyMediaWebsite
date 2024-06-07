@@ -9,33 +9,37 @@
 
 .home-first-container {
     padding: clamp(1rem, 5vw, 5rem) clamp(1rem, 5vw, 7.5rem);
-}
-
-.home-first-container #title {
-    font-family: 'Couture Bold', 'sans-serif';
-    font-size: clamp(1.5rem, 5vw, 5rem);
-    animation: swipefromleft 1s ease-out;
-    display: inline-block;
-    line-height: 1;
-}
-
-.home-first-container #title span {
-    display: inline-block;
-    animation: swipefromleft 1s ease-out;
-    animation-delay: calc(0.2s * var(--index));
-    margin-right: clamp(0rem, 1vw, 2rem);
+    z-index: 1;
+    overflow: hidden;
 }
 
 @keyframes swipefromtop {
     0% {
         transform: translateY(-100%);
     }
+
     100% {
         transform: translateY(0);
     }
 }
 
+@keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
 .home-first-content p {
+    z-index: 3;
     font-family: 'Couture Bold', 'sans-serif';
     font-size: clamp(1.5rem, 5vw, 3rem);
     animation: swipefromtop 1s ease-out;
@@ -43,13 +47,58 @@
     line-height: 1.2;
 }
 
-.home-first-content p.loop {
-    font-size: clamp(2rem, 5vw, 5rem);
-    color: #E25E3E;
-    text-shadow: #E25E3E 0px 0px 10px;
+@keyframes shine {
+    0% {
+      background-position: 0%;
+    }
+    60% {
+      background-position: calc(100% + 100vw);
+    }
+    100% {
+      background-position: 100%;
+    }
 }
 
-.home-first-container img {
-    width: 420px;
-    height: 420px;
+.home-first-content p.loop {
+    color: transparent;
+    position: relative;
+    font-size: clamp(2rem, 5vw, 5rem);
+    background: linear-gradient(to left, hsl(0, 0%, 100%) 5%, hsl(30, 100%, 50%) 100%);
+    background-clip: text;
+    animation: shine 4s linear infinite;
 }
+
+@keyframes animate {
+    0% {
+        transform: perspective(1000px) rotateX(0deg) rotate(5deg);
+    }
+
+    100% {
+        transform: perspective(500px) rotateX(360deg) rotate(5deg);
+    }
+}
+
+.right-side-content {
+    line-height: 1.5;
+    color: white;
+    font-size: 3.5em;
+    font-weight: bold;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 
+.right-side-container {
+    overflow: hidden;
+    position: absolute;
+    top: calc(-20% * 50vw);
+}
+
+.triangle-down {
+    width: clamp(500px, 50vw, 1000px);
+    height: clamp(500px, 50vw, 1000px);
+    z-index: 2;
+    background: linear-gradient(180deg, #E25E3E 0%, #FFA5A5 100%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(90deg);
+} */

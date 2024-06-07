@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fonts */
+@font-face {
+    font-family: "Robinson Regular";
+    src: url("assets/fonts/Robinson-Regular-BF664564e0ed909.otf");
+}
+
+@font-face {
+    font-family: "JetBrains Mono Medium";
+    src: url("assets/fonts/JetBrainsMono-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Circular Std Bold";
+    src: url("assets/fonts/CircularStd-Bold.woff");
+}
+
+
+.text {
+    background: linear-gradient(to left, #ffffff 50%, #994d00 25%);
+}

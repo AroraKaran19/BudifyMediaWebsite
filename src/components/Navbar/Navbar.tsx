@@ -1,6 +1,6 @@
-import '../styles/main.css';
+import '../../styles/main.css';
 import NavLinks from './NavLinks';
-import Logo from '/Logo.png';
+import Logo from '../../assets/Logo.png';
 import HamburgerMenu from './HamburgerMenu';
 import { useState } from 'react';
 
@@ -10,23 +10,23 @@ const Navbar = () => {
 	const menu = [
 		{
 			index: 1,
-			href: "/",
+			href: "",
 			name: "Home",
 			ids: "active"
 		},
 		{
 			index: 2,
-			href: "/who-we-are",
+			href: "#main",
 			name: "Who we are"
 		},
 		{
 			index: 3,
-			href: "/services",
+			href: "#services",
 			name: "What we do"
 		},
 		{
 			index: 4,
-			href: "/contact",
+			href: "#contact",
 			name: "Contact us"
 		}
 	];
@@ -36,16 +36,16 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="navbar w-full sticky top-0 bg-[#191919]">
+		<div className="navbar w-full sticky top-0 bg-neutral-950 border-b-gray-200 border-b-[2px]">
 			<div className="flex h-full w-full">
-				<div className="flex-1 absolute hamburger hidden left-[15px] top-[30px] sm:flex items-center">
+				<div className="flex-1 absolute hamburger hidden left-[15px] top-[25px] sm:flex items-center">
 					<button onClick={toggleMenu}>
 						<HamburgerMenu />
 					</button>
 				</div>
 				<div className="logo-box h-full w-full flex-none max-w-[20vw] sm:max-w-full">
-					<a href="/" className='h-full w-full flex justify-center items-center'>
-						<img src={Logo} alt="Budify Media Logo" className='h-[50px]' />
+					<a className='h-full w-full flex justify-center items-center'>
+						<img src={Logo} alt="Budify Media Logo" className='h-[50px] cursor-pointer' onClick={() => {window.location.href = "/";}} />
 					</a>
 				</div>
 				<div className="flex-auto flex-grow h-full flex justify-end items-center sm:hidden nav-items text-[#7c7a7c]">
