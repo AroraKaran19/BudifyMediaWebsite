@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import "../styles/Home.css";
 import FirstSection from "../components/Home/FirstSection";
-import SecondSection from "../components/Home/SecondSection";
 
 function Home() {
 
