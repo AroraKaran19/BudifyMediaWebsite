@@ -12,7 +12,7 @@ export default {
       // => @media (max-width: 320px) { ... }
       'sm': {
         'min': '0px',
-        'max': '1024px' // Small devices (phones to tablets)
+        'max': '1200px' // Small devices (phones to tablets)
       },
       // => @media (min-width: 321px) and (max-width: 768px) { ... }
       'md': {
@@ -62,6 +62,8 @@ export default {
         'heading-gradient': 'linear-gradient(to left, hsl(0, 0%, 100%) 5%, hsl(30, 100%, 30%) 100%)',
         // 'background-gradient': "linear-gradient(165deg, rgba(0,0,0,1) 0%, rgba(255,165,0,1) 77%, rgba(255,255,255,1) 100%)",
         "background-gradient": "linear-gradient(315deg, rgba(0,0,0,1) 0%, rgba(255,165,0,1) 50%, rgba(0,0,0,1) 100%)",
+        "card-1-gradient": "linear-gradient(90deg, #FEE140 0%, #FA709A 100%)",
+        "card-2-gradient": ""
       },
     }
   },

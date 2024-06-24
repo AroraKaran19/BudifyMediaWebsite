@@ -17,10 +17,14 @@ const Navbar = () => {
 			if (!navbar.classList.contains('stickTop')) {
 				if (window.scrollY > navbarHeight) {
 					navbar.classList.add('stickTop');
+					navbar.classList.add("bg-white/10");
+					navbar.classList.add("backdrop-blur-lg");
 				}
 			} else {
 				if (window.scrollY < navbarHeight) {
 					navbar.classList.remove('stickTop');
+					navbar.classList.remove("bg-white/10");
+					navbar.classList.remove("backdrop-blur-lg")
 				}
 			}
 		}
@@ -43,21 +47,21 @@ const Navbar = () => {
 					href: "/main/about-us",
 					name: "About us",
 					desc: "Learn more about us",
-					background_color: "bg-[#B5A886]"
+					className: "bg-card-1-gradient"
 				},
 				{
 					index: 2,
 					href: "/main/team",
 					name: "Our team",
 					desc: "Meet the team",
-					background_color: "bg-[#6C698D]"
+					className: "bg-[#6C698D]"
 				},
 				{
 					index: 3,
 					href: "/main/testimonials",
 					name: "Testimonials",
 					desc: "What our clients say",
-					background_color: "bg-[#7D451B]"
+					className: "bg-[#7D451B]"
 				}
 			]
 		},
@@ -70,20 +74,6 @@ const Navbar = () => {
 			index: 4,
 			href: "/contact",
 			name: "Contact us",
-			subMenu: [
-				{
-					index: 1,
-					href: "/contact/faq",
-					name: "FAQ",
-					desc: "Frequently asked questions"
-				},
-				{
-					index: 2,
-					href: "/contact/support",
-					name: "Support",
-					desc: "Get in touch with us",
-				}
-			]
 		}
 	];
 
@@ -92,25 +82,29 @@ const Navbar = () => {
 	};
 
 	useEffect(() => {
+		const logo = document.querySelector('.logo-box a span') as HTMLElement;
+		logo.classList.add("begAfterAni");
 		setTimeout(() => {
-			const logo = document.querySelector('.logo-box a span') as HTMLElement;
 			if (!logo) return;
 			else {
 				if (logo.classList.contains('animate-animateHeadText')) {
 					logo.classList.remove('animate-animateHeadText');
+					logo.classList.remove('begAfterAni');
 				}
 			}
 		}, 3000);
 	}, []);
 
-	console.log(menu);
 	return (
-		<div className="navbar w-full sm:relative sticky top-0 sm:p-0 bg-neutral-950">
+		<div className="navbar w-full sm:relative sticky top-0 sm:p-0 ">
 
 			<div className={`sidebar hidden sm:block ${menuOpen ? 'open' : ''} flex flex-col`}>
 				<div className="flex justify-start items-center p-4">
 					<button onClick={toggleMenu}>
-						<HamburgerMenu />
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+						</svg>
+
 					</button>
 				</div>
 				<div className="menu-nav-links flex flex-col justify-start px-6 items-start w-full text-[#0000004d]">

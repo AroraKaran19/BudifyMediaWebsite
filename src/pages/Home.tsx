@@ -46,7 +46,7 @@ function Home() {
 	}, []);
 
 	return (
-		<div className="min-h-screen bg-background-gradient">
+		<div className="min-h-screen">
 			<FirstSection />
 		</div>
 	);
