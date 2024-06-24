@@ -4,7 +4,6 @@ import FirstSection from "../components/Home/FirstSection";
 
 function Home() {
 
-
 	// Handle the active section based on the scroll position
 	useEffect(() => {
 		const handleActiveSection = () => {

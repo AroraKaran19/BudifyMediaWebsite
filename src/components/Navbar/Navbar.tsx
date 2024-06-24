@@ -106,6 +106,21 @@ const Navbar = () => {
 	console.log(menu);
 	return (
 		<div className="navbar w-full sm:relative sticky top-0 sm:p-0 bg-neutral-950">
+
+			<div className={`sidebar hidden sm:block ${menuOpen ? 'open' : ''} flex flex-col`}>
+				<div className="flex justify-start items-center p-4">
+					<button onClick={toggleMenu}>
+						<HamburgerMenu />
+					</button>
+				</div>
+				<div className="menu-nav-links flex flex-col justify-start px-6 items-start w-full text-[#0000004d]">
+					{menu.map((item) => (
+						<NavLinksMenu key={item.index} href={item.href} name={item.name} subMenu={item?.subMenu} closeMenu={toggleMenu} device='mobile' />
+					))}
+					<a href="/contact" className="contact-button text-[#fff] bg-[#7D451B] py-2 px-6 rounded-lg">Contact us</a>
+				</div>
+			</div>
+
 			<div className="flex h-full w-full">
 				<div className="flex-1 absolute hamburger hidden left-[15px] top-[25px] sm:flex items-center">
 					<button onClick={toggleMenu}>
@@ -123,19 +138,10 @@ const Navbar = () => {
 					))}
 				</div>
 				{/* Contact Button */}
-				<div className="flex-none flex items-center justify-center">
+				<div className="flex-none sm:hidden flex items-center justify-center">
 					<a href="/contact" className="contact-button text-[#fff] bg-[#7D451B] py-2 px-6 rounded-lg">Contact us</a>
 				</div>
 			</div>
-			{menuOpen ?
-				<div className="hidden menu absolute left-0 top-full w-full bg-[#191919] sm:flex flex-col">
-					<div className="menu-nav-links flex flex-col justify-start px-6 items-start w-full text-[#0000004d]">
-						{menu.map((item) => (
-							<NavLinksMenu key={item.index} href={item.href} name={item.name} subMenu={item?.subMenu} closeMenu={toggleMenu} device='mobile' />
-						))}
-					</div>
-				</div>
-				: null}
 		</div>
 	)
 }

@@ -7,7 +7,7 @@ interface NavLinksMenuProps {
     key: number;
     subMenu?: SubMenuProps[];
     closeMenu?: () => void;
-    classValue?: string | " ";
+    className?: string | " ";
     device?: string;
     desc?: string;
 }
@@ -21,11 +21,11 @@ interface SubMenuProps {
     background_color?: string;
 }
 
-function NavLinksMenu({ href, name, closeMenu, subMenu, classValue, device, desc }: NavLinksMenuProps) {
+function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc }: NavLinksMenuProps) {
 
     const location = useLocation();
     const navigate = useNavigate();
-    const [subMenuOpen, setSubMenuOpen] = useState(true);
+    const [subMenuOpen, setSubMenuOpen] = useState(false);
 
     const handleNavigation = (href: string) => {
         if (device !== "mobile") {
@@ -50,7 +50,7 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, classValue, device, desc
 
     return (
         <Link to={(!subMenu ? href : "")} onClick={(e) => { e.preventDefault(); handleNavigation(href); }}
-            className={`flex flex-col relative ${location.pathname === href || "/" + location.pathname.split("/")[1] == href ? "active" : ""} navigation-link sm:w-full ${classValue ? classValue : ""}`} onMouseEnter={() => setSubMenuOpen(true)} onMouseLeave={() => setSubMenuOpen(false)} >
+            className={`flex flex-col ${location.pathname === href || "/" + location.pathname.split("/")[1] == href ? "active" : ""} navigation-link text-white sm:text-black sm:w-full ${className ? className : ""}`} onMouseEnter={() => setSubMenuOpen(true)} onMouseLeave={() => setSubMenuOpen(false)} >
 
             <span className="flex justify-center items-center sm:justify-start gap-1 flex-wrap">
                 {name}
@@ -67,10 +67,10 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, classValue, device, desc
             {desc ? <span className="text-[#fff] text-sm">{desc}</span> : ""}
 
             {subMenu && subMenu.length > 0 && subMenuOpen ?
-                <div className="sub-menu absolute sm:relative sm:w-full sm:p-2 right-0 top-full bg-[#fff] sm:bg-transparent text-white rounded-lg flex sm:flex-col gap-6" >
+                <div className="sub-menu absolute sm:relative sm:w-full sm:p-2 right-0 top-full bg-[#fff] sm:bg-transparent rounded-lg flex sm:flex-col gap-6" >
                     {subMenu.map((item: any) => (
                         <div className={`flex flex-col ${item.background_color}`}>
-                            <NavLinksMenu key={item.index} href={item.href} name={item.name} desc={item.desc}/>
+                            <NavLinksMenu key={item.index} href={item.href} name={item.name} desc={item.desc} className="sm:text-white"/>
                         </div>
                     ))}
                 </div> : null

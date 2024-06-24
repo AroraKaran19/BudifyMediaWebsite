@@ -85,11 +85,10 @@
     box-shadow: 0px 10px 10px rgba(255, 255, 255, 0.1);
 }
 
-.menu .menu-nav-links .navigation-link {
+.navigation-link {
     font-family: 'Titillium Web', 'sans-serif';
     font-size: clamp(16px, 5vw, 24px);
     transition: all 0.7s;
-    color: white;
     cursor: pointer;
 }
 
@@ -98,19 +97,13 @@
     transition: d 1s ease-in-out;
 }
 
-.menu .menu-nav-links .navigation-link.active {
+.navigation-link.active {
     color: #E25E3E;
 }
 
 .navbar .nav-items {
     height: 100%;
     margin-right: clamp(0px, 5vw, 20px);
-}
-
-.navbar .nav-items .navigation-link {
-    font-family: 'Titillium Web', 'sans-serif';
-    font-size: clamp(10px, 2vw, 20px);
-    transition: all 0.7s;
 }
 
 @keyframes swipingTopEffect {
@@ -158,10 +151,6 @@
     cursor: pointer;
 }
 
-.navbar .nav-items .navigation-link.active {
-    color: #E25E3E;
-}
-
 .navbar .nav-items .navigation-link {
     margin-right: 65px;
 }
@@ -186,6 +175,27 @@
     box-shadow: 0px 0px 4px black;
     transform: scale(1.02);
 } */
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: -300px; /* Off-screen initially */
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    transition: left 0.7s ease;
+    z-index: 1000; /* Ensure sidebar is above other content */
+}
+
+.sidebar.open {
+    left: 0;
+    transition: left 0.7s ease;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
 
 @media (min-width: 0px) and (max-width: 1024px) {
     .menu .menu-nav-links .navigation-link {
