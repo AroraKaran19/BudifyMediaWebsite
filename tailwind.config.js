@@ -34,21 +34,34 @@ export default {
       keyframes: {
         shine: {
           '0%': { backgroundPosition: '0%' },
-          '50%': { backgroundPosition: 'calc(100% + 80vw)' },
+          '50%': { backgroundPosition: 'calc(50% + 10vw)' },
           '100%': { backgroundPosition: '100%' },
         },
         swipefromtop: {
           '0%': { transform: 'translateY(-100%)' },
           '100%': { transform: 'translateY(0)' },
         },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+        glitter: { 
+          '0%': { maskPosition: '120%', opacity: 1 },
+          '100%': { maskPosition: '0%', opacity: 1 }
+        },
       },
       animation: {
-        shine: 'swipefromtop 1s ease-in-out, shine 8s infinite ease',
+        shine: 'shine 8s infinite ease',
         shineDelayed: 'swipefromtop 1s ease-in-out, shine 8s infinite ease 8s',
+        animateHeadText: 'swipefromtop 1s ease-in-out, glitter ease-in-out 2s forwards 1s',
         swipeTop: 'swipefromtop 1s ease-in-out',
+        fadeIn: 'fadeIn ease-in-out 2s forwards',
+        glitter: 'glitter ease-in-out 2s',
       },
       backgroundImage: {
         'heading-gradient': 'linear-gradient(to left, hsl(0, 0%, 100%) 5%, hsl(30, 100%, 30%) 100%)',
+        // 'background-gradient': "linear-gradient(165deg, rgba(0,0,0,1) 0%, rgba(255,165,0,1) 77%, rgba(255,255,255,1) 100%)",
+        "background-gradient": "linear-gradient(315deg, rgba(0,0,0,1) 0%, rgba(255,165,0,1) 50%, rgba(0,0,0,1) 100%)",
       },
     }
   },

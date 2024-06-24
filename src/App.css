@@ -17,8 +17,3 @@
     font-family: "Circular Std Bold";
     src: url("assets/fonts/CircularStd-Bold.woff");
 }
-
-
-.text {
-    background: linear-gradient(to left, #ffffff 50%, #994d00 25%);
-}
