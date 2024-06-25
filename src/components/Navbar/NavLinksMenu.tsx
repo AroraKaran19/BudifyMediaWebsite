@@ -19,6 +19,7 @@ interface SubMenuProps {
     desc: string;
     icon?: string;
     className?: string;
+    background?: string;
 }
 
 function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc }: NavLinksMenuProps) {
@@ -28,31 +29,22 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
     const [subMenuOpen, setSubMenuOpen] = useState(false);
 
     const handleNavigation = (href: string) => {
-        // Handle the navigation based on the device, if the device is mobile then open the submenu
-        if (device !== "mobile") {
-            if (subMenu && subMenu.length > 0) return;
-            window.scrollTo(0, 0);
-            closeMenu && closeMenu();
-            setTimeout(() => {
-                navigate(href);
-            }, 300);
-        } else {
-            if (subMenu && subMenu.length > 0) {
-                setSubMenuOpen(!subMenuOpen);
-            } else {
-                window.scrollTo(0, 0);
-                closeMenu && closeMenu();
-                setTimeout(() => {
-                    navigate(href);
-                }, 300);
-            }
+        // If the link has a submenu, open the submenu
+        if (subMenu && subMenu.length > 0) {
+            setSubMenuOpen(!subMenuOpen);
+            return;          
         }
+        window.scrollTo(0, 0);
+        closeMenu && closeMenu();
+        setTimeout(() => {
+            navigate(href);
+        }, 300);
     }
 
     return (
         <Link to={(!subMenu ? href : "")} onClick={(e) => { e.preventDefault(); handleNavigation(href); }}
-            className={`flex flex-col relative ${location.pathname === href || "/" + location.pathname.split("/")[1] == href ? "active" : ""} navigation-link text-white sm:text-black sm:w-full ${className ? className : ""}  ${!subMenu ? "hover:text-[#E25E3E]" : ""}`} 
-            onMouseEnter={(e) => {device !== "mobile" ? setSubMenuOpen(true) : e.preventDefault()}} onMouseLeave={(e) => {device !== "mobile" ? setSubMenuOpen(false) : e.preventDefault()}} >
+            className={`flex flex-col relative ${location.pathname === href || "/" + location.pathname.split("/")[1] == href ? "active" : ""} navigation-link sm:w-full ${className ? className : ""}  ${!subMenu ? "hover:text-[#E25E3E]" : ""}`} 
+            onMouseEnter={(e) => {device !== "mobile" ? setSubMenuOpen(true) : e.preventDefault()}} onMouseLeave={(e: any) => {device !== "mobile" ? setSubMenuOpen(false) : e.preventDefault()}} >
 
             {/* Link */}
             <span className={`flex justify-start items-center sm:justify-start gap-1 flex-wrap ${subMenu ? "cursor-default sm:justify-between" : "cursor-pointer"} sm:w-full`}>
@@ -67,16 +59,16 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
                 }
 
             </span>
-            {desc ? <p className="text-[#fff] flex flex-wrap">{desc}</p> : ""}
+            {desc ? <p className={`text-[#000] flex flex-wrap`}>{desc}</p> : ""}
             
             {/* Submenu */}
             {subMenu && subMenu.length > 0 && subMenuOpen ?
-                <div className="sub-menu flex flex-col absolute sm:relative sm:w-full right-0 top-full bg-[#fff] sm:bg-transparent rounded-lg sm:flex-col gap-6" >
+                <div className={`sub-menu flex flex-col absolute sm:relative sm:w-full right-0 top-full bg-white sm:bg-transparent rounded-lg sm:flex-col gap-3`} >
                     <p className="sub-heading text-black mt-6 sm:hidden">{name}</p>
-                    <div className="sub-links flex sm:flex-col gap-6">
+                    <div className="sub-links flex sm:flex-col gap-6 sm:gap-3">
                         {subMenu.map((item: any) => (
-                            <div className={`flex flex-col ${item?.className} rounded-lg`}>
-                                <NavLinksMenu key={item.index} href={item.href} name={item.name} desc={item.desc} className="sm:text-white" />
+                            <div className={`flex flex-col ${item?.className} ${item.background ? item.background + " bgExist" : ""} rounded-lg`}>
+                                <NavLinksMenu key={item.index} href={item.href} name={item.name} desc={item.desc} className={`${item.background ? "text-black" : "text-black"}`} closeMenu={closeMenu} />
                             </div>
                         ))}
                     </div>

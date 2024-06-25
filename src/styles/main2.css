@@ -38,10 +38,10 @@
 }
 
 .logo-box a span {
-    font-family: 'Outfit', 'sans-serif';
+    font-family: 'Montserrat', 'sans-serif';
     font-size: clamp(26px, 5vw, 38px);
     font-weight: 700;
-    background-color: #E25E3E;
+    background: linear-gradient(to right, #E25E3E 52%, #fff 48%);
     background-clip: text;
     color: transparent;
     transition: all 2s ease;
@@ -55,7 +55,7 @@
     display: block;
     width: 0;
     height: 3px;
-    background-color: #000;
+    background-color: #fff;
     transition: 0.7s all;
 }
 
@@ -119,6 +119,7 @@
 
 .sub-menu.sub-menu-exit {
     transform: translateY(-5%);
+    opacity: 0.2;
     transition: transform 0.5s ease-in-out;
 }
 
@@ -151,25 +152,13 @@
     transition: all 1s;
     cursor: default;
     animation: swipingDownEffect 0.5s ease;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
-
-.navigation-link span {
-    width: max-content;
-    height: 100%;
 }
 
 .sub-menu a {
     font-size: clamp(10px, 2vw, 18px);
-    padding: clamp(0px, 2vw, 10px);
-    border-radius: 15px;
-    transition: all 0.5s;
+    width: max-content;
+    padding: clamp(0px, 2vw, 20px);
 }
-
-.sub-menu div {
-    transition: all 0.5s;
-}
-
 
 .sub-menu a span {
     font-family: 'Titillium Web', 'sans-serif';
@@ -183,19 +172,13 @@
 
 .sub-menu .sub-heading {
     font-family: "Oswald", sans-serif;
-    font-size: clamp(14px, 2vw, 25px);
-    font-weight: 500;
-    letter-spacing: 0.25rem;
+    font-size: clamp(14px, 2vw, 28px);
+    font-weight: 800;
+    letter-spacing: 0.15rem;
 }
 
 .navbar .nav-items .sub-menu a:hover {
     color: #E25E3E;
-    background: rgba(226, 94, 62, 0.2);
-}
-
-.navbar .sub-menu .navigation-link.active {
-    color: #E25E3E;
-    background: rgba(226, 94, 62, 0.2);
 }
 
 .navbar .nav-items svg {
@@ -225,6 +208,7 @@
 
 .navbar .nav-items .navigation-link .sub-menu a {
     margin: 0;
+    width: max-content;
 }
 
 
@@ -252,12 +236,6 @@
 .sidebar.open {
     left: 0;
     transition: left 0.5s ease-in-out;
-}
-
-.sidebar .sidebar-heading {
-    font-family: 'Titillium Web', 'sans-serif';
-    font-size: clamp(24px, 5vw, 32px);
-    font-weight: 700;
 }
 
 .sidebar-content {

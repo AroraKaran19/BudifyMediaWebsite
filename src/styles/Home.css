@@ -1,8 +1,12 @@
-* {
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 @font-face {
     font-family: 'Couture Bold';
     src: url('/fonts/couture-bld.ttf');
+}
+
+.first-section-heading h1 {
+    font-family: "Outfit", "sans-serif";
+    line-height: 100%;
+    font-size: clamp(2.25rem, 5vw, 5rem);
 }
