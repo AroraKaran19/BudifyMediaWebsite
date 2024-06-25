@@ -25,9 +25,10 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
 
     const location = useLocation();
     const navigate = useNavigate();
-    const [subMenuOpen, setSubMenuOpen] = useState(true);
+    const [subMenuOpen, setSubMenuOpen] = useState(false);
 
     const handleNavigation = (href: string) => {
+        // Handle the navigation based on the device, if the device is mobile then open the submenu
         if (device !== "mobile") {
             if (subMenu && subMenu.length > 0) return;
             window.scrollTo(0, 0);
@@ -50,12 +51,14 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
 
     return (
         <Link to={(!subMenu ? href : "")} onClick={(e) => { e.preventDefault(); handleNavigation(href); }}
-            className={`flex flex-col relative ${location.pathname === href || "/" + location.pathname.split("/")[1] == href ? "active" : ""} navigation-link text-white sm:text-black sm:w-full ${className ? className : ""}  ${!subMenu ? "hover:text-[#E25E3E]" : ""}`} onMouseEnter={() => setSubMenuOpen(true)} onMouseLeave={() => setSubMenuOpen(false)} >
+            className={`flex flex-col relative ${location.pathname === href || "/" + location.pathname.split("/")[1] == href ? "active" : ""} navigation-link text-white sm:text-black sm:w-full ${className ? className : ""}  ${!subMenu ? "hover:text-[#E25E3E]" : ""}`} 
+            onMouseEnter={(e) => {device !== "mobile" ? setSubMenuOpen(true) : e.preventDefault()}} onMouseLeave={(e) => {device !== "mobile" ? setSubMenuOpen(false) : e.preventDefault()}} >
 
-            <span className={`flex justify-start items-center sm:justify-start gap-1 flex-wrap ${subMenu ? "cursor-default" : "cursor-pointer"}`}>
+            {/* Link */}
+            <span className={`flex justify-start items-center sm:justify-start gap-1 flex-wrap ${subMenu ? "cursor-default sm:justify-between" : "cursor-pointer"} sm:w-full`}>
                 {name}
                 {subMenu && subMenu.length > 0 ?
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         {!subMenuOpen ? <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" /> :
                             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                         }
@@ -64,8 +67,9 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
                 }
 
             </span>
-            {desc ? <p className="text-[#fff]">{desc}</p> : ""}
-
+            {desc ? <p className="text-[#fff] flex flex-wrap">{desc}</p> : ""}
+            
+            {/* Submenu */}
             {subMenu && subMenu.length > 0 && subMenuOpen ?
                 <div className="sub-menu flex flex-col absolute sm:relative sm:w-full right-0 top-full bg-[#fff] sm:bg-transparent rounded-lg sm:flex-col gap-6" >
                     <p className="sub-heading text-black mt-6 sm:hidden">{name}</p>

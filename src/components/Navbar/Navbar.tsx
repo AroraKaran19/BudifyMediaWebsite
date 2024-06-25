@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import NavLinksMenu from './NavLinksMenu';
 
 const Navbar = () => {
+	// Handle the menu open and close
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	// Make the navbar sticky when it has been scrolled past 100px
@@ -15,6 +16,7 @@ const Navbar = () => {
 		if (!navbar) return;
 		else {
 			if (!navbar.classList.contains('stickTop')) {
+				// check if the user has scrolled past navbarHeight
 				if (window.scrollY > navbarHeight) {
 					navbar.classList.add('stickTop');
 					navbar.classList.add("bg-white/10");
@@ -79,11 +81,24 @@ const Navbar = () => {
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen);
+		// Disable scrolling when the menu is open
+		if (menuOpen) {
+			document.body.style.overflow = 'auto';
+		}
+		else {
+			document.body.style.overflow = 'hidden';
+		}
 	};
 
 	useEffect(() => {
+		// Add animation to the logo in beginning
 		const logo = document.querySelector('.logo-box a span') as HTMLElement;
-		logo.classList.add("begAfterAni");
+		setTimeout(() => {
+			if (!logo) return;
+			else {
+				logo.classList.add('begAfterAni');
+			}
+		}, 1000);
 		setTimeout(() => {
 			if (!logo) return;
 			else {
@@ -98,20 +113,22 @@ const Navbar = () => {
 	return (
 		<div className="navbar w-full sm:relative sticky top-0 sm:p-0 ">
 
-			<div className={`sidebar hidden sm:block ${menuOpen ? 'open' : ''} flex flex-col`}>
-				<div className="flex justify-start items-center p-4">
-					<button onClick={toggleMenu}>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-						</svg>
+			<div className={`open-sidebar-wrapper hidden sm:block absolute z-[1000] ${menuOpen ? 'w-full h-screen bg-black/10 backdrop-blur-lg' : ''}`}>
+				<div className={`sidebar hidden sm:block absolute top-0 w-[300px] h-screen bg-white z-[1001] ${menuOpen ? 'open' : ''} flex flex-col`}>
+					<div className="flex justify-start items-center p-4">
+						<button onClick={toggleMenu}>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+								<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+							</svg>
 
-					</button>
-				</div>
-				<div className="menu-nav-links flex flex-col justify-start px-6 items-start w-full text-[#0000004d]">
-					{menu.map((item) => (
-						<NavLinksMenu key={item.index} href={item.href} name={item.name} subMenu={item?.subMenu} closeMenu={toggleMenu} device='mobile' />
-					))}
-					<a href="/contact" className="contact-button text-[#fff] bg-[#7D451B] py-2 px-6 rounded-lg">Contact us</a>
+						</button>
+					</div>
+					<div className="menu-nav-links flex flex-col justify-start px-6 items-start w-full text-[#0000004d]">
+						{menu.map((item) => (
+							<NavLinksMenu key={item.index} href={item.href} name={item.name} subMenu={item?.subMenu} closeMenu={toggleMenu} device='mobile' />
+						))}
+						<a href="/contact" className="contact-button text-[#fff] bg-[#E25E3E] py-2 px-6 rounded-lg">Contact us</a>
+					</div>
 				</div>
 			</div>
 
@@ -121,9 +138,9 @@ const Navbar = () => {
 						<HamburgerMenu />
 					</button>
 				</div>
-				<div className="logo-box h-full w-full flex-none max-w-[20vw] sm:max-w-full">
-					<a className='h-full w-full flex justify-center items-center'>
-						<span className='animate-animateHeadText'>BudifyMedia</span>
+				<div className="logo-box h-full sm:w-full sm:justify-center sm:flex sm:items-center flex-1 max-w-[20vw] sm:max-w-full">
+					<a className='flex justify-center items-center' href='/'>
+						<span className='animate-animateHeadText cursor-pointer'>BudifyMedia</span>
 					</a>
 				</div>
 				<div className="flex-auto flex-grow h-full flex justify-end items-center sm:hidden nav-items text-[#7c7a7c]">
@@ -133,7 +150,7 @@ const Navbar = () => {
 				</div>
 				{/* Contact Button */}
 				<div className="flex-none sm:hidden flex items-center justify-center">
-					<a href="/contact" className="contact-button text-[#fff] bg-[#7D451B] py-2 px-6 rounded-lg">Contact us</a>
+					<a href="/contact" className="contact-button text-[#fff] bg-[#E25E3E] py-2 px-6 rounded-lg">Contact us</a>
 				</div>
 			</div>
 		</div>
