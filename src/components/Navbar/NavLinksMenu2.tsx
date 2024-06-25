@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface NavLinksMenuProps {
     href: string;
@@ -21,9 +21,8 @@ interface SubMenuProps {
     className?: string;
 }
 
-function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc }: NavLinksMenuProps) {
+function NavLinksMenu({ href, name, closeMenu, subMenu, device }: NavLinksMenuProps) {
 
-    const location = useLocation();
     const navigate = useNavigate();
     const [subMenuOpen, setSubMenuOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
