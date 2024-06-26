@@ -110,7 +110,7 @@ const Navbar = () => {
 	}, []);
 
 	return (
-		<div className="navbar w-full sticky top-0 sm:p-0  ">
+		<div className="navbar w-full sticky top-0 sm:p-0">
 
 			{/* Mobile Navbar (Sidebar) */}
 			<div className={`open-sidebar-wrapper top-0 left-0 hidden sm:block absolute z-[1001] ${menuOpen ? 'w-full h-screen bg-black/10 backdrop-blur-lg' : ''}`}>

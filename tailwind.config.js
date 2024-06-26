@@ -49,6 +49,19 @@ export default {
           '0%': { maskPosition: '120%', opacity: 1 },
           '100%': { maskPosition: '0%', opacity: 1 }
         },
+        floatingText: {
+          '0%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-30px)' },
+          '100%': { transform: 'translateY(0)' }
+        },
+        swipeFromLeft: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' }
+        },
+        swipeFromRight: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' }
+        },
       },
       animation: {
         shine: 'shine 8s infinite ease',
@@ -57,6 +70,9 @@ export default {
         swipeTop: 'swipefromtop 1s ease-in-out',
         fadeIn: 'fadeIn ease-in-out 2s forwards',
         glitter: 'glitter ease-in-out 2s',
+        floatingText: 'floatingText 2.5s ease-in-out infinite',
+        swipeFromLeft: 'swipeFromLeft 1s ease-in-out',
+        swipeFromRight: 'swipeFromRight 1s ease-in-out',
       },
       backgroundImage: {
         'heading-gradient': 'linear-gradient(to left, hsl(0, 0%, 100%) 5%, hsl(30, 100%, 30%) 100%)',
