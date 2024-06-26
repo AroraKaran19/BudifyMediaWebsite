@@ -45,7 +45,7 @@ function Home() {
 	// }, []);
 
 	return (
-		<div className="min-h-screen">
+		<div className="min-h-screen h-[2000px]">
 			<FirstSection />
 		</div>
 	);

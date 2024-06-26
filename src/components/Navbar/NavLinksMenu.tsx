@@ -36,18 +36,19 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
         }
         window.scrollTo(0, 0);
         closeMenu && closeMenu();
+        setSubMenuOpen(false);
         setTimeout(() => {
             navigate(href);
         }, 300);
     }
 
     return (
-        <Link to={(!subMenu ? href : "")} onClick={(e) => { e.preventDefault(); handleNavigation(href); }}
-            className={`flex flex-col relative ${location.pathname === href || "/" + location.pathname.split("/")[1] == href ? "active" : ""} navigation-link sm:w-full ${className ? className : ""}  ${!subMenu ? "hover:text-[#E25E3E]" : ""}`} 
+        <Link key={name} to={(!subMenu ? href : "")} onClick={(e) => { e.preventDefault(); handleNavigation(href); }}
+            className={`flex flex-col relative ${(location.pathname === href || "/" + location.pathname.split("/")[1] == href) && "active"} navigation-link sm:w-full ${className ? className : ""}  ${!subMenu ? "hover:text-[#E25E3E]" : ""}`} 
             onMouseEnter={(e) => {device !== "mobile" ? setSubMenuOpen(true) : e.preventDefault()}} onMouseLeave={(e: any) => {device !== "mobile" ? setSubMenuOpen(false) : e.preventDefault()}} >
 
             {/* Link */}
-            <span className={`flex justify-start items-center sm:justify-start gap-1 flex-wrap ${subMenu ? "cursor-default sm:justify-between" : "cursor-pointer"} sm:w-full`}>
+            <span className={`flex justify-between items-center flex-wrap gap-2 sm:w-full ${subMenu ? "cursor-default" : "cursor-pointer"}`}>
                 {name}
                 {subMenu && subMenu.length > 0 ?
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -59,20 +60,20 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
                 }
 
             </span>
-            {desc ? <p className={`text-[#000] flex flex-wrap`}>{desc}</p> : ""}
+            {desc && <p className={`text-[#000] flex break-words text-center sm:text-start`}>{desc}</p>}
             
             {/* Submenu */}
-            {subMenu && subMenu.length > 0 && subMenuOpen ?
+            {subMenu && subMenu.length > 0 && subMenuOpen &&
                 <div className={`sub-menu flex flex-col absolute sm:relative sm:w-full right-0 top-full bg-white sm:bg-transparent rounded-lg sm:flex-col gap-3`} >
                     <p className="sub-heading text-black mt-6 sm:hidden">{name}</p>
-                    <div className="sub-links flex sm:flex-col gap-6 sm:gap-3">
+                    <div className="sub-links flex sm:flex-col justify-center gap-6 sm:gap-3">
                         {subMenu.map((item: any) => (
                             <div className={`flex flex-col ${item?.className} ${item.background ? item.background + " bgExist" : ""} rounded-lg`}>
-                                <NavLinksMenu key={item.index} href={item.href} name={item.name} desc={item.desc} className={`${item.background ? "text-black" : "text-black"}`} closeMenu={closeMenu} />
+                                <NavLinksMenu key={item.name} href={item.href} name={item.name} desc={item.desc} className={`${item.background ? "text-black" : "text-black"}`} closeMenu={closeMenu} />
                             </div>
                         ))}
                     </div>
-                </div> : null
+                </div>
             }
 
         </Link>

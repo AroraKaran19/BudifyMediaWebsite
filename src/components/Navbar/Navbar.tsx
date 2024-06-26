@@ -7,29 +7,24 @@ const Navbar = () => {
 	// Handle the menu open and close
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	// Make the navbar sticky when it has been scrolled past 100px
-	// Check device width if it is greater than 1024px then add the sticky class
 	window.addEventListener('scroll', () => {
 		// check if skicky is already added
-		const deviceWidth = window.innerWidth;
-		if (deviceWidth > 1200) {
-			const navbar = document.querySelector('.navbar') as HTMLElement;
-			const navbarHeight = 50;
-			if (!navbar) return;
-			else {
-				if (!navbar.classList.contains('stickTop')) {
-					// check if the user has scrolled past navbarHeight
-					if (window.scrollY > navbarHeight) {
-						navbar.classList.add('stickTop');
-						navbar.classList.add("bg-white/10");
-						navbar.classList.add("backdrop-blur-2xl");
-					}
-				} else {
-					if (window.scrollY < navbarHeight) {
-						navbar.classList.remove('stickTop');
-						navbar.classList.remove("bg-white/10");
-						navbar.classList.remove("backdrop-blur-2xl")
-					}
+		const navbar = document.querySelector('.navbar') as HTMLElement;
+		const navbarHeight = 50;
+		if (!navbar) return;
+		else {
+			if (!navbar.classList.contains('stickTop')) {
+				// check if the user has scrolled past navbarHeight
+				if (window.scrollY > navbarHeight) {
+					navbar.classList.add('stickTop');
+					navbar.classList.add("bg-white/10");
+					navbar.classList.add("backdrop-blur-lg");
+				}
+			} else {
+				if (window.scrollY < navbarHeight) {
+					navbar.classList.remove('stickTop');
+					navbar.classList.remove("bg-white/10");
+					navbar.classList.remove("backdrop-blur-lg");
 				}
 			}
 		}
@@ -86,6 +81,10 @@ const Navbar = () => {
 			document.body.style.overflow = 'auto';
 		}
 		else {
+			const logo_svg = document.querySelector(".closed-menu svg path") as HTMLElement;
+			// change property inside path's d
+			
+			console.log(logo_svg);
 			document.body.style.overflow = 'hidden';
 		}
 	};
@@ -111,10 +110,10 @@ const Navbar = () => {
 	}, []);
 
 	return (
-		<div className="navbar w-full sm:relative sticky top-0 sm:p-0 ">
+		<div className="navbar w-full sticky top-0 sm:p-0  ">
 
 			{/* Mobile Navbar (Sidebar) */}
-			<div className={`open-sidebar-wrapper hidden sm:block absolute z-[1001] ${menuOpen ? 'w-full h-screen bg-black/10 backdrop-blur-lg' : ''}`}>
+			<div className={`open-sidebar-wrapper top-0 left-0 hidden sm:block absolute z-[1001] ${menuOpen ? 'w-full h-screen bg-black/10 backdrop-blur-lg' : ''}`}>
 				<div className={`sidebar hidden sm:block absolute top-0 w-[60vw] h-screen bg-white z-[1002] ${menuOpen ? 'open' : ''} flex flex-col`}>
 					<div className="flex w-full justify-between hamburger items-center px-4 pt-8 pb-6">
 						<p className='sidebar-heading text-center'>Menu</p>
@@ -137,7 +136,7 @@ const Navbar = () => {
 
 			{/* Desktop Navbar */}
 			<div className="flex h-full w-full justify-center items-center">
-				<div className="flex-1 absolute hamburger hidden left-[5vw] sm:flex items-center">
+				<div className="flex-1 absolute hamburger closed-menu hidden left-[5vw] sm:flex items-center">
 					<button onClick={toggleMenu}>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -149,7 +148,7 @@ const Navbar = () => {
 						<span className='animate-animateHeadText cursor-pointer'>BudifyMedia</span>
 					</a>
 				</div>
-				<div className="flex-auto flex-grow h-full flex justify-end items-center sm:hidden nav-items gap-6 px-10">
+				<div className="flex-auto flex-grow h-full flex justify-end sm:hidden nav-items gap-6 px-10">
 					{menu.map((item) => (
 						<NavLinksMenu key={item.index} href={item.href} name={item.name} subMenu={item.subMenu} />
 					))}
