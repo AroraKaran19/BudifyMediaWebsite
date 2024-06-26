@@ -5,36 +5,6 @@
     src: url('/fonts/couture-bld.ttf');
 }
 
-@keyframes swipeFromRight {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes swipeFromLeft {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes floatingText {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-30px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
 .first-section-heading h1 {
     font-family: "Outfit", "sans-serif";
     line-height: 100%;
@@ -43,10 +13,10 @@
     transition: all 0.5s ease-in-out;
 }
 
-/* .first-section-heading h1:nth-child(1) {
-    animation: swipeFromLeft 1s ease-out;
+.first-section-subheading p {
+    font-family: "Outfit", "sans-serif";
+    line-height: normal;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    cursor: default;
+    transition: all 0.5s ease-in-out;
 }
-
-.first-section-heading h1:nth-child(2) {
-    animation: swipeFromRight 1s ease-out;
-} */
