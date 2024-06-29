@@ -16,12 +16,12 @@ function FirstSection() {
 
 	return (
 		<div className="h-screen w-full absolute top-0 bg-background-gradient overflow-hidden">
-			<div className="h-full w-full flex flex-col justify-center items-center px-10">
-				<div className="first-section-heading flex flex-col justify-center items-center py-10">
+			<div className="h-full w-full flex flex-col justify-center items-center">
+				<div className="first-section-heading flex flex-col justify-center items-center p-10 ">
 					<h1 className="font-bold text-center animate-swipeFromLeft">Growing Brands</h1>
 					<h1 className="font-bold text-center animate-swipeFromRight">Amplifying Reach!</h1>
 				</div>
-				<div className="first-section-subheading flex flex-wrap justify-center items-center">
+				<div className="first-section-subheading flex flex-wrap break-words justify-center items-center px-[25vw] sm:px-[10vw]">
 					<p className="text-center text-black text-xl">Unlock high-performance creativity. Connect with top-tier design talent to boost your team's speed, efficiency, and scalability.</p>
 				</div>
 			</div>

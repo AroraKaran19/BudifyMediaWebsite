@@ -143,17 +143,17 @@ const Navbar = () => {
 						</svg>
 					</button>
 				</div>
-				<div className="logo-box h-full sm:w-full justify-center items-center sm:flex flex-1 max-w-[20vw] sm:max-w-full">
+				<div className="logo-box h-full justify-center items-center flex flex-1">
 					<a className='h-full flex justify-center items-center' href='/'>
-						<span className='animate-animateHeadText cursor-pointer'>BudifyMedia</span>
+						<span className='animate-animateHeadText cursor-pointer w-max'>Budify Media</span>
 					</a>
 				</div>
-				<div className="flex-auto flex-grow h-full flex justify-end sm:hidden nav-items gap-6 px-10">
+				<div className="flex-1 flex-grow h-full flex justify-center sm:hidden nav-items gap-10">
 					{menu.map((item) => (
 						<NavLinksMenu key={item.index} href={item.href} name={item.name} subMenu={item.subMenu} />
 					))}
 				</div>
-				<div className="flex-none sm:hidden flex items-center justify-center">
+				<div className="flex-1 sm:hidden w-full h-full flex items-center justify-center">
 					<a href="/contact" className="contact-button text-[#fff] bg-[#E25E3E] py-2 px-6 rounded-lg">Contact us</a>
 				</div>
 			</div>

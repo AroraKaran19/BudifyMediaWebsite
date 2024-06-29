@@ -64,9 +64,9 @@ function NavLinksMenu({ href, name, closeMenu, subMenu, className, device, desc 
             
             {/* Submenu */}
             {subMenu && subMenu.length > 0 && subMenuOpen &&
-                <div className={`sub-menu flex flex-col absolute sm:relative sm:w-full right-0 top-full bg-white sm:bg-transparent rounded-lg sm:flex-col gap-3`} >
-                    <p className="sub-heading text-black mt-6 sm:hidden">{name}</p>
-                    <div className="sub-links flex sm:flex-col justify-center gap-6 sm:gap-3">
+                <div className={`sub-menu flex flex-col absolute sm:relative sm:w-full top-full bg-white sm:bg-transparent rounded-2xl sm:flex-col gap-3`} >
+                    <p className="sub-heading text-black mt-2 sm:hidden w-full flex justify-center items-center">{name}</p>
+                    <div className="sub-links flex sm:flex-col justify-center gap-3 sm:gap-3">
                         {subMenu.map((item: any) => (
                             <div className={`flex flex-col ${item?.className} ${item.background ? item.background + " bgExist" : ""} rounded-lg`}>
                                 <NavLinksMenu key={item.name} href={item.href} name={item.name} desc={item.desc} className={`${item.background ? "text-black" : "text-black"}`} closeMenu={closeMenu} />
